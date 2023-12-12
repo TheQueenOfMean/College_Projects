@@ -1,0 +1,15 @@
+# Daily Task Manager Dependencies
+
+# tkinter is included with most Python installations.
+# If tkinter is missing, you can install it as follows:
+# - On Ubuntu: sudo apt-get install python3-tk
+# - On Fedora: sudo dnf install python3-tkinter
+# - On macOS: No additional installation needed.
+# - On Windows: No additional installation needed.
+
+# plyer is used for notifications
+plyer==2.0.0
+
+Ensure that this file is in the root directory of your project. Users can install the dependencies using:
+To intall these modules
+pip install -r requirements.txt
