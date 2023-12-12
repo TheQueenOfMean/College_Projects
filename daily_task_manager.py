@@ -138,6 +138,16 @@ class DailyTaskManager:
             self.upcoming_events_label.config(text=events_text)
         else:
             self.upcoming_events_label.config(text="No upcoming events.")
+        def show_event_reminder(self, event_title):
+        # Show a notification for the event reminder
+            notification_title = 'Event Reminder'
+            notification_message = f"It's time for your event: {event_title}!"
+            notification.notify(
+            title=notification_title,
+            message=notification_message,
+            app_name='Daily Task Manager',
+            timeout=10
+            )
 
     def add_medication_button(self):
         med_name = self.med_name_entry.get()
@@ -178,6 +188,16 @@ class DailyTaskManager:
             self.upcoming_medications_label.config(text=medications_text)
         else:
             self.upcoming_medications_label.config(text="No upcoming medications.")
+        def show_medication_reminder(self, medication_name):
+        # Show a notification for the medication reminder
+            notification_title = 'Medication Reminder'
+            notification_message = f"It's time to take your {medication_name} medication!"
+            notification.notify(
+            title=notification_title,
+            message=notification_message,
+            app_name='Daily Task Manager',
+            timeout=10
+            )
 
 
 
