@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from datetime import datetime
 import sqlite3
 from plyer import notification
 
@@ -48,59 +47,55 @@ class DailyTaskManager:
 
     def initialize_calendar_tab(self):
         # Calendar UI components
-        ttk.Label(self.calendar_tab, text="Add Event").grid(row=0, column=0, padx=10, pady=10, columnspan=2)
-        ttk.Label(self.calendar_tab, text="Title:").grid(row=1, column=0, padx=10, pady=5)
-        ttk.Label(self.calendar_tab, text="Date:").grid(row=2, column=0, padx=10, pady=5)
-        ttk.Label(self.calendar_tab, text="Time:").grid(row=3, column=0, padx=10, pady=5)
-        ttk.Label(self.calendar_tab, text="Description:").grid(row=4, column=0, padx=10, pady=5)
-
+        ttk.Label(self.calendar_tab, text="Event Title:").grid(row=0, column=0, padx=10, pady=5)
         self.title_entry = ttk.Entry(self.calendar_tab)
-        self.title_entry.grid(row=1, column=1, padx=10, pady=5)
+        self.title_entry.grid(row=0, column=1, padx=10, pady=5)
 
+        ttk.Label(self.calendar_tab, text="Date:").grid(row=1, column=0, padx=10, pady=5)
         self.date_entry = ttk.Entry(self.calendar_tab)
-        self.date_entry.grid(row=2, column=1, padx=10, pady=5)
+        self.date_entry.grid(row=1, column=1, padx=10, pady=5)
 
+        ttk.Label(self.calendar_tab, text="Time:").grid(row=2, column=0, padx=10, pady=5)
         self.time_entry = ttk.Entry(self.calendar_tab)
-        self.time_entry.grid(row=3, column=1, padx=10, pady=5)
+        self.time_entry.grid(row=2, column=1, padx=10, pady=5)
 
+        ttk.Label(self.calendar_tab, text="Description:").grid(row=3, column=0, padx=10, pady=5)
         self.description_entry = ttk.Entry(self.calendar_tab)
-        self.description_entry.grid(row=4, column=1, padx=10, pady=5)
+        self.description_entry.grid(row=3, column=1, padx=10, pady=5)
 
-        ttk.Button(self.calendar_tab, text="Add Event", command=self.add_event_button).grid(row=5, column=0, columnspan=2, pady=10)
+        ttk.Button(self.calendar_tab, text="Add Event", command=self.add_event_button).grid(row=4, column=0, columnspan=2, pady=10)
 
         # Display upcoming events
-        ttk.Label(self.calendar_tab, text="Upcoming Events").grid(row=6, column=0, padx=10, pady=5, columnspan=2)
+        ttk.Label(self.calendar_tab, text="Upcoming Events").grid(row=5, column=0, padx=10, pady=5, columnspan=2)
         self.upcoming_events_label = ttk.Label(self.calendar_tab, text="")
-        self.upcoming_events_label.grid(row=7, column=0, padx=10, pady=5, columnspan=2)
+        self.upcoming_events_label.grid(row=6, column=0, padx=10, pady=5, columnspan=2)
 
         self.display_upcoming_events()
 
     def initialize_pill_schedule_tab(self):
         # Pill Schedule UI components
-        ttk.Label(self.pill_schedule_tab, text="Add Medication").grid(row=0, column=0, padx=10, pady=10, columnspan=2)
-        ttk.Label(self.pill_schedule_tab, text="Name:").grid(row=1, column=0, padx=10, pady=5)
-        ttk.Label(self.pill_schedule_tab, text="Dosage:").grid(row=2, column=0, padx=10, pady=5)
-        ttk.Label(self.pill_schedule_tab, text="Frequency:").grid(row=3, column=0, padx=10, pady=5)
-        ttk.Label(self.pill_schedule_tab, text="Notes:").grid(row=4, column=0, padx=10, pady=5)
+        ttk.Label(self.pill_schedule_tab, text="Medication Name:").grid(row=0, column=0, padx=10, pady=5)
+        self.med_name_entry = ttk.Entry(self.pill_schedule_tab)
+        self.med_name_entry.grid(row=0, column=1, padx=10, pady=5)
 
-        self.name_entry = ttk.Entry(self.pill_schedule_tab)
-        self.name_entry.grid(row=1, column=1, padx=10, pady=5)
-
+        ttk.Label(self.pill_schedule_tab, text="Dosage:").grid(row=1, column=0, padx=10, pady=5)
         self.dosage_entry = ttk.Entry(self.pill_schedule_tab)
-        self.dosage_entry.grid(row=2, column=1, padx=10, pady=5)
+        self.dosage_entry.grid(row=1, column=1, padx=10, pady=5)
 
+        ttk.Label(self.pill_schedule_tab, text="Frequency:").grid(row=2, column=0, padx=10, pady=5)
         self.frequency_entry = ttk.Entry(self.pill_schedule_tab)
-        self.frequency_entry.grid(row=3, column=1, padx=10, pady=5)
+        self.frequency_entry.grid(row=2, column=1, padx=10, pady=5)
 
+        ttk.Label(self.pill_schedule_tab, text="Notes:").grid(row=3, column=0, padx=10, pady=5)
         self.notes_entry = ttk.Entry(self.pill_schedule_tab)
-        self.notes_entry.grid(row=4, column=1, padx=10, pady=5)
+        self.notes_entry.grid(row=3, column=1, padx=10, pady=5)
 
-        ttk.Button(self.pill_schedule_tab, text="Add Medication", command=self.add_medication_button).grid(row=5, column=0, columnspan=2, pady=10)
+        ttk.Button(self.pill_schedule_tab, text="Add Medication", command=self.add_medication_button).grid(row=4, column=0, columnspan=2, pady=10)
 
         # Display upcoming medications
-        ttk.Label(self.pill_schedule_tab, text="Upcoming Medications").grid(row=6, column=0, padx=10, pady=5, columnspan=2)
+        ttk.Label(self.pill_schedule_tab, text="Upcoming Medications").grid(row=5, column=0, padx=10, pady=5, columnspan=2)
         self.upcoming_medications_label = ttk.Label(self.pill_schedule_tab, text="")
-        self.upcoming_medications_label.grid(row=7, column=0, padx=10, pady=5, columnspan=2)
+        self.upcoming_medications_label.grid(row=6, column=0, padx=10, pady=5, columnspan=2)
 
         self.display_upcoming_medications()
 
@@ -118,20 +113,6 @@ class DailyTaskManager:
             self.time_entry.delete(0, tk.END)
             self.description_entry.delete(0, tk.END)
 
-    def add_medication_button(self):
-        name = self.name_entry.get()
-        dosage = self.dosage_entry.get()
-        frequency = self.frequency_entry.get()
-        notes = self.notes_entry.get()
-
-        if name and dosage and frequency:
-            self.add_medication(name, dosage, frequency, notes)
-            self.display_upcoming_medications()
-            self.name_entry.delete(0, tk.END)
-            self.dosage_entry.delete(0, tk.END)
-            self.frequency_entry.delete(0, tk.END)
-            self.notes_entry.delete(0, tk.END)
-
     def add_event(self, title, date, time, description):
         # Add event to the database
         with self.conn:
@@ -140,6 +121,37 @@ class DailyTaskManager:
                 INSERT INTO events (title, date, time, description)
                 VALUES (?, ?, ?, ?)
             ''', (title, date, time, description))
+
+    def display_upcoming_events(self):
+        # Retrieve upcoming events from the database
+        with self.conn:
+            cursor = self.conn.cursor()
+            cursor.execute('''
+                SELECT title, date, time FROM events
+                ORDER BY date, time
+            ''')
+            upcoming_events = cursor.fetchall()
+
+        # Display upcoming events in the label
+        if upcoming_events:
+            events_text = "\n".join(f"{event[0]} - {event[1]} at {event[2]}" for event in upcoming_events)
+            self.upcoming_events_label.config(text=events_text)
+        else:
+            self.upcoming_events_label.config(text="No upcoming events.")
+
+    def add_medication_button(self):
+        med_name = self.med_name_entry.get()
+        dosage = self.dosage_entry.get()
+        frequency = self.frequency_entry.get()
+        notes = self.notes_entry.get()
+
+        if med_name and dosage and frequency:
+            self.add_medication(med_name, dosage, frequency, notes)
+            self.display_upcoming_medications()
+            self.med_name_entry.delete(0, tk.END)
+            self.dosage_entry.delete(0, tk.END)
+            self.frequency_entry.delete(0, tk.END)
+            self.notes_entry.delete(0, tk.END)
 
     def add_medication(self, name, dosage, frequency, notes):
         # Add medication to the database
@@ -150,31 +162,24 @@ class DailyTaskManager:
                 VALUES (?, ?, ?, ?)
             ''', (name, dosage, frequency, notes))
 
-    def display_upcoming_events(self):
-        # Display upcoming events on the main screen
-        with self.conn:
-            cursor = self.conn.cursor()
-            cursor.execute('SELECT title, date, time FROM events ORDER BY date, time')
-            upcoming_events = cursor.fetchall()
-
-        if upcoming_events:
-            events_text = "\n".join([f"{title} - {date} {time}" for title, date, time in upcoming_events])
-            self.upcoming_events_label.config(text=events_text)
-        else:
-            self.upcoming_events_label.config(text="No upcoming events")
-
     def display_upcoming_medications(self):
-        # Display upcoming medications on the main screen
+    # Retrieve upcoming medications from the database
         with self.conn:
             cursor = self.conn.cursor()
-            cursor.execute('SELECT name, dosage, frequency FROM medications ORDER BY frequency')
+            cursor.execute('''
+                SELECT name, dosage, frequency FROM medications
+                ORDER BY frequency
+            ''')
             upcoming_medications = cursor.fetchall()
 
+    # Display upcoming medications in the label
         if upcoming_medications:
-            medications_text = "\n".join([f"{name} - {dosage}, {frequency}" for name, dosage, frequency in upcoming_medications])
+            medications_text = "\n".join(f"{medication[0]} - {medication[1]} ({medication[2]})" for medication in upcoming_medications)
             self.upcoming_medications_label.config(text=medications_text)
         else:
-            self.upcoming_medications_label.config(text="No upcoming medications")
+            self.upcoming_medications_label.config(text="No upcoming medications.")
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
